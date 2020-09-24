@@ -10,4 +10,8 @@ class ArtefatoItem(val artefato: Artefato,
 
         return true
     }
+
+    override fun toString(): String {
+        return "$qnt"
+    }
 }
