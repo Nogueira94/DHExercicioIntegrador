@@ -6,7 +6,7 @@ class ArtefatoItem(val artefato: Artefato,
         if (this === other) return true
         if (other !is ArtefatoItem) return false
 
-        if (artefato.codigo != other.artefato.codigo && qtd != other.qnt) return false
+        if (artefato.codigo != other.artefato.codigo && qnt != other.qnt) return false
 
         return true
     }
