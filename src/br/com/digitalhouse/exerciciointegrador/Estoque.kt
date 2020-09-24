@@ -24,6 +24,13 @@ class Estoque {
         }
 
         fun remover(item: ArtefatoItem) {
+            when (item.artefato) {
+                is Livro -> removerLivro(item)
+                is Colecao -> item.artefato.livros.forEach{livro -> removerLivro(ArtefatoItem(livro, item.qnt)) }
+            }
+        }
+
+        private fun removerLivro(item: ArtefatoItem) {
             itens.forEach {
                 if (it.artefato == item.artefato) {
                     if (it.qnt >= item.qnt) {
