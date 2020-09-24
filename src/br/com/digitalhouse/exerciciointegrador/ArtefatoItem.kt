@@ -1,7 +1,7 @@
 package br.com.digitalhouse.exerciciointegrador
 
 class ArtefatoItem(val artefato: Artefato,
-                   var qnt: Int) {
+                   var qnt: Int? = null) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is ArtefatoItem) return false
@@ -12,6 +12,10 @@ class ArtefatoItem(val artefato: Artefato,
     }
 
     override fun toString(): String {
-        return "$qnt"
+        when (this.artefato) {
+            is Livro -> return "${artefato.toString()}: Estoque: $qnt"
+            is Colecao -> return "${artefato.toString()}"
+        }
+        return "${artefato.toString()}"
     }
 }

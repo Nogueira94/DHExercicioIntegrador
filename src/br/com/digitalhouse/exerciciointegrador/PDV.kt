@@ -9,8 +9,8 @@ class PDV() {
 
         open fun vender(v: Venda) {
             v.itens.forEach { item ->
-                val itemEst = Estoque.consultar(item.artefato.codigo)
-                if (item.qnt > itemEst.qnt)
+                val itemEst = Estoque.consultarEstoque(item.artefato.codigo)
+                if (item.qnt!! > itemEst)
                     throw SemEstoqueException()
             }
             v.itens.forEach { item ->
