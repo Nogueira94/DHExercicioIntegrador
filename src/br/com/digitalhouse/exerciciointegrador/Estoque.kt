@@ -5,34 +5,37 @@ import br.com.digitalhouse.exerciciointegrador.exceptions.ProdutoNaoEncontradoEx
 
 class Estoque {
 
-    val itens = mutableListOf<ArtefatoItem>()
+    companion object {
+        val itens = mutableListOf<ArtefatoItem>()
 
-    fun consultar(codigo: Int) : ArtefatoItem {
-        itens.forEach { if (it.artefato.codigo == codigo) return it }
-        throw ProdutoNaoEncontradoException()
-    }
-
-    fun adicionar(item: ArtefatoItem) {
-        itens.forEach {
-            if (it.artefato == item.artefato) {
-                it.qnt += item.qnt
-                return
-            }
+        fun consultar(codigo: Int) : ArtefatoItem {
+            itens.forEach { if (it.artefato.codigo == codigo) return it }
+            throw ProdutoNaoEncontradoException()
         }
-        itens.add(item)
-    }
 
-    fun remover(item: ArtefatoItem) {
-        itens.forEach {
-            if (it.artefato == item.artefato) {
-                if (it.qnt >= item.qnt) {
-                    it.qnt -= item.qnt
+        fun adicionar(item: ArtefatoItem) {
+            itens.forEach {
+                if (it.artefato == item.artefato) {
+                    it.qnt += item.qnt
                     return
-                } else
-                    throw SemEstoqueException()
+                }
             }
+            itens.add(item)
         }
-        throw ProdutoNaoEncontradoException()
+
+        fun remover(item: ArtefatoItem) {
+            itens.forEach {
+                if (it.artefato == item.artefato) {
+                    if (it.qnt >= item.qnt) {
+                        it.qnt -= item.qnt
+                        return
+                    } else
+                        throw SemEstoqueException()
+                }
+            }
+            throw ProdutoNaoEncontradoException()
+        }
+
     }
 
 }
